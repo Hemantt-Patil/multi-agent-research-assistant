@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import ResearchReport from "../components/ResearchReport";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export default function Home() {
   const [topic, setTopic] = useState("");
@@ -17,7 +18,7 @@ export default function Home() {
     }
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/research", {
+      const res = await fetch(`${API_URL}/research`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic })
@@ -68,3 +69,4 @@ export default function Home() {
     </div>
   );
 }
+
